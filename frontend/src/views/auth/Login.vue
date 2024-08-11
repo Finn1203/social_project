@@ -3,25 +3,23 @@ import { reactive, ref } from "vue";
 import { login } from "@/services/auth_service";
 import { toast } from "vue3-toastify";
 import { useRouter } from "vue-router";
+import { useAuthStore } from "@/stores/authStore";
 
 const router = useRouter();
+const authStore = useAuthStore();
 
 const user = reactive({
-	email: "",
-	password: "",
+	email: "johndoe@gmail.com",
+	password: "123456789",
 });
 
 const errors = ref({});
 const handleLogin = async () => {
 	try {
 		const response = await login(user);
-		toast.success("Account created.");
-		user.email = "";
-		user.password = "";
-
-		setTimeout(() => {
-			router.push("/login");
-		}, 1000);
+    authStore.setUser(response.data.user);
+    authStore.setToken(response.data.access_token);
+    router.push('/timeline')
 	} catch (error) {
 		errors.value = error.response.data.errors;
 	}
