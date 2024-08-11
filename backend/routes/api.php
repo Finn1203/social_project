@@ -41,4 +41,11 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
         Route::apiResource('posts', \App\Http\Controllers\API\PostController::class);
         Route::get('posts-public', [\App\Http\Controllers\API\PostController::class,'publicPosts']);
     });
+
+    Route::controller(\App\Http\Controllers\API\LikeCommentController::class)->group(function(){
+        Route::post('comments', 'PostComment');
+        Route::get('like/{postId}', 'LikeUnlike');
+    });
+
+    
 });
