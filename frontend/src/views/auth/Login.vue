@@ -1,6 +1,6 @@
 <script setup>
 import { reactive, ref } from "vue";
-import { register } from "@/services/auth_service";
+import { login } from "@/services/auth_service";
 import { toast } from "vue3-toastify";
 import { useRouter } from "vue-router";
 
@@ -14,7 +14,7 @@ const user = reactive({
 const errors = ref({});
 const handleLogin = async () => {
 	try {
-		const response = await register(user);
+		const response = await login(user);
 		toast.success("Account created.");
 		user.email = "";
 		user.password = "";
@@ -248,7 +248,7 @@ const handleLogin = async () => {
           </div>
         </form>
         <div class="mt-4 text-sm text-gray-600 text-center">
-          <p>Don't have any account? <a href="#" class="text-black hover:underline">Sign Up here</a>
+          <p>Don't have any account? <router-link class="ml-2 font-semibold hover:text-blue-500" to="/register">Register here</router-link>
           </p>
         </div>
       </div>

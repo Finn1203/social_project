@@ -275,7 +275,7 @@ const handleRegister = async () => {
           </div>
         </form>
         <div class="mt-4 text-sm text-gray-600 text-center">
-          <p>Already have an account? <a href="#" class="text-black hover:underline">Login here</a>
+          <p>Already have an account? <router-link class="ml-2 font-semibold hover:text-blue-500" to="/login">Login here</router-link>
           </p>
         </div>
       </div>
