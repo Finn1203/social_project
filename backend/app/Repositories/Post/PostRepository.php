@@ -18,10 +18,6 @@ class PostRepository extends BaseRepository
                             ->where('user_id', $userId)
                             ->orderBy('created_at', 'desc')
                             ->cursorPaginate();
-        // return $this->model->with([['user:id','first_name','last_name']])
-        //                    ->where('user_id', $userId)
-        //                    ->orderBy('created_at', 'desc')
-        //                    ->cursorPaginate();
     }
 
     public function getPublicPosts()
