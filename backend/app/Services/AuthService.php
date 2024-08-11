@@ -35,7 +35,7 @@ class AuthService
 
         // Return the authenticated user with their notifications and the new access token
         return [
-            'user' => $user, //load('notifications'),
+            'user' => $user->load('notifications'),
             'access_token' => $token->plainTextToken
         ];
     }
