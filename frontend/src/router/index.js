@@ -11,8 +11,25 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/timeline',
-      component: () => import('../views/dashboard/Home.vue'),
+      path: '',
+      component: () => import("../views/dashboard/Home.vue"),
+      children: [
+        {
+          path: '/timeline',
+          name: 'dashboard.timeline',
+          component: () => import('../views/dashboard/Timeline.vue')
+        },
+        // {
+        //   path: '/notifications',
+        //   name: 'dashboard.notifications',
+        //   component: () => import('../views/dashboard/Notifications.vue')
+        // },
+        {
+          path: '/settings',
+          name: 'dashboard.settings',
+          component: () => import('../views/dashboard/Settings.vue')
+        },
+      ],
       beforeEnter(to, from, next){
         const store = useAuthStore();
         if (store.isLoggedIn) {
